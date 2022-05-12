@@ -20,11 +20,16 @@
                         <input id="city-name" type="text" placeholder="Enter City" />
                         <button class="btn btn-dark mt-2" type="submit">Search</button>
                 </form>
-                <div class="list-group"></div>
+                <div id="search-history" class="list-group"></div>
             </div>
-            <div id="display-section" class="col-9"></div>
+            <div id="display-section" class="col-9">
+                <div id="current-weather" class="col-12">
+                    <h4 id="city-and-date"></h4>
+                </div>
+            </div>
         </section>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 

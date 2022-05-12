@@ -1,3 +1,17 @@
 body {
     background-color: lightblue;
 }
+
+input {
+    width: 100%;
+}
+
+
+.list-group {
+    column-gap: 5px;
+}
+
+.list-group-item {
+    background-color: orange;
+    margin: 5px 0;
+}
