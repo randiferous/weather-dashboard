@@ -123,13 +123,12 @@ displayUvIndex = function (data) {
             }
             displayForecast(data);
         });
+        forecastContainerEl.innerHTML ="";
     });
 };
 
+// forecast section
 displayForecast = function (data) {
-    // if (forecastContainerEl.hasChildNodes()) {
-    //     forecastContainerEl.removeChild(forecastEl);
-    // }
     for (let i = 1; i < 6; i++) {
         var timestamp = data.daily[i].dt;
         var convertTime = new Date(timestamp * 1000);
