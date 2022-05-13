@@ -11,7 +11,7 @@ When it finally came to deciding how to display the weather forecast, I debated 
 
 What I enjoyed about this challenge is that it allowed me to play with new tools and information.  It was my first time using the Network tab in DevTools, where I figured out how to extract specific weather information. I got to manipulate URL to retrieve information that I wanted, such as switching the weather data into imperial measurements. I learned how to convert Unix time to daily time and how to display an icon by only using JavaScript. Also, I learned what a UV Index is, and became thankful that I live somewhere that usually does not have a high UV Index.
 
-Overall, I am content with my work on this challenge and the learning I received from it. Here is the link to my application:
+Overall, I am content with my work on this challenge and the learning I received from it. Here is the link to my application: https://randiferous.github.io/weather-dashboard-challenge/
 
 Below are a few snapshots of the application when it is empty, being used, and refreshed:
 
