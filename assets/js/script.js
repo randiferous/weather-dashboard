@@ -3,6 +3,7 @@ console.log("hello world");
 var searchFormEl = document.querySelector("#search-form");
 var cityInputEl = document.querySelector("#city-name");
 var searchHistoryEl = document.querySelector("#search-history");
+var currentWeatherEl = document.querySelector("#current-weather");
 var cityAndDateEl = document.querySelector("#city-and-date");
 
 var cityStorage = [];
@@ -46,12 +47,16 @@ var loadCity = function() {
 // search history
 var displayCity = function(cityName) {
     var cityListEl = document.createElement("button");
-    cityListEl.className = "list-group-item";
+    cityListEl.classList = "list-group-item list-group-item-action";
     cityListEl.setAttribute("type", "button");
     cityListEl.textContent = cityName;
     searchHistoryEl.appendChild(cityListEl);
 
-    cityListEl.addEventListener("click", getCityInfo(cityName));
+    cityListEl.addEventListener("click", eventHandler);
+};
+
+var eventHandler = function(event) {
+    getCityInfo(event.target.textContent);
 }
 
 // api request
@@ -61,7 +66,7 @@ var getCityInfo = function(cityName) {
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data)
+                // console.log(data)
                 displayWeather(data);
             });
         } else {
@@ -76,7 +81,13 @@ var getCityInfo = function(cityName) {
 // display weather
 displayWeather = function(data) {
     var name = data.name;
-    cityAndDateEl.textContent = name + " (" + today + ")";
+
+    var icon = data.weather[0].icon;
+    var iconUrl = "http://openweathermap.org/img/w/" + icon + ".png";
+    var iconImage = document.createElement("img");
+    iconImage.setAttribute("src", iconUrl);
+    currentWeatherEl.appendChild(iconImage);
+    cityAndDateEl.innerHTML = name + " (" + today + ")";
 }
 
 searchFormEl.addEventListener("submit", formSubmitHandler);
