@@ -8,6 +8,7 @@ var currentTempEl = document.querySelector("#current-temperature");
 var currentHumidEl = document.querySelector("#current-humidity");
 var currentWindEl = document.querySelector("#current-wind");
 var UvIndexEl = document.querySelector("#current-uv-index");
+var forecastContainerEl = document.querySelector("#forecast-container");
 
 var cityStorage = [];
 var today = moment().format("M/DD/YYYY");
@@ -106,7 +107,7 @@ displayUvIndex = function (data) {
     var lat = data.coord.lat;
     var lon = data.coord.lon;
 
-    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=05bd4265f18fe414d9b3357776b08c4d";
+    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&units=imperial&appid=05bd4265f18fe414d9b3357776b08c4d";
 
     fetch(apiUrl).then(function (response) {
         response.json().then(function (data) {
@@ -120,10 +121,51 @@ displayUvIndex = function (data) {
             } else {
                 UvIndexEl.className = "bg-warning col-6 d-flex justify-content-end";
             }
+            displayForecast(data);
         });
     });
 };
 
+displayForecast = function (data) {
+    // if (forecastContainerEl.hasChildNodes()) {
+    //     forecastContainerEl.removeChild(forecastEl);
+    // }
+    for (let i = 1; i < 6; i++) {
+        var timestamp = data.daily[i].dt;
+        var convertTime = new Date(timestamp * 1000);
+        var day = convertTime.getDate();
+        var month = convertTime.getMonth() + 1;
+        var year = convertTime.getFullYear();
+        var date = month + "/" + day + "/" + year;
+
+        var forecastEl = document.createElement("div");
+        forecastEl.className = "col-2 border border-dark forecast-element";
+        forecastEl.textContent = date;
+
+        var icon = data.daily[i].weather[0].icon;
+        var iconUrl = "http://openweathermap.org/img/w/" + icon + ".png";
+        var iconImage = document.createElement("img");
+        iconImage.setAttribute("src", iconUrl);
+        forecastEl.appendChild(iconImage);
+
+        var temperature = data.daily[i].temp.day;
+        var temperatureEl = document.createElement("div");
+        temperatureEl.textContent = "Temp: " + temperature + " °F";
+        forecastEl.appendChild(temperatureEl);
+    
+        var humidity = data.daily[i].humidity;
+        var HumidityEl = document.createElement("div");
+        HumidityEl.textContent = "Humidity: " + humidity + "%";
+        forecastEl.appendChild(HumidityEl);
+
+        var windSpeed = data.daily[i].wind_speed;
+        var windSpeedEl = document.createElement("div");
+        windSpeedEl.textContent = "Wind: " + windSpeed + " MPH";
+        forecastEl.appendChild(windSpeedEl);
+
+        forecastContainerEl.appendChild(forecastEl);
+    }
+}
 
 searchFormEl.addEventListener("submit", formSubmitHandler);
 

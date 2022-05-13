@@ -19,3 +19,8 @@ input {
 #weather-heading {
     text-align: center;
 }
+
+.forecast-element {
+    padding-right: 5px;
+    padding-left: 5px;
+}

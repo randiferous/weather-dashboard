@@ -6,3 +6,4 @@
 - I got to use the Network tab in DevTools to figure out where to extract weather information
 - switching into imperial measurement for the temperature was a nice little hurdle
 - when I got to displaying the UV Index, the load time became longer. I suspect it because of the second fetch request.
+- I got to convert unix utc to daily time
