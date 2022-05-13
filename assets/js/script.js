@@ -45,10 +45,13 @@ var loadCity = function() {
 
 // search history
 var displayCity = function(cityName) {
-    var cityListEl = document.createElement("li"); // change to link element "a or button" eventually, and active city item should be highlighted
-    cityListEl.classList = "list-group-item";
+    var cityListEl = document.createElement("button");
+    cityListEl.className = "list-group-item";
+    cityListEl.setAttribute("type", "button");
     cityListEl.textContent = cityName;
     searchHistoryEl.appendChild(cityListEl);
+
+    cityListEl.addEventListener("click", getCityInfo(cityName));
 }
 
 // api request
