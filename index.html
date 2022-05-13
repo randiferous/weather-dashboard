@@ -11,20 +11,32 @@
 </head>
 
 <body>
-    <header class="h1 text-center">Weather Dashboard</header>
+    <header class="h1 text-center mt-2 mb-3">Weather Dashboard</header>
     <main class="container">
         <section class="row">
             <div id="search-section" class="col-3">
-                <form id="search-form" class ="form-group">
-                        <label class="font-weight-bold h5">Search for a City:</label>
-                        <input id="city-name" type="text" placeholder="Enter City" />
-                        <button class="btn btn-dark mt-2" type="submit">Search</button>
+                <form id="search-form" class="form-group">
+                    <label class="font-weight-bold h5">Search for a City:</label>
+                    <input id="city-name" type="text" placeholder="Enter City" />
+                    <button class="btn btn-dark mt-2" type="submit">Search</button>
                 </form>
                 <div id="search-history" class="list-group"></div>
             </div>
             <div id="display-section" class="col-9">
-                <div id="current-weather" class="col-12">
-                    <h4 id="city-and-date"></h4>
+                <div id="current-weather" class="col-12 container border border-dark">
+                    <div id="weather-heading">
+                        <h4 id="city-and-date">Search for or click on a city...</h4>
+                        <img id="weather-icon">
+                    </div>
+                    <div class="row">
+                        <h5 id="current-temperature" class="col-6"></h5>
+                        <h5 id="current-humidity" class="col-6 d-flex justify-content-end"></h5>
+                        <h5 id="current-wind" class="col-6"></h5>
+                        <h5 id="current-uv-index"></h5>
+                    </div>
+                </div>
+                <div id="weather-forecast">
+                        <h4 class="mt-1">5-Day Forecast</h4>
                 </div>
             </div>
         </section>
