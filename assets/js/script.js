@@ -20,10 +20,25 @@ var formSubmitHandler = function (event) {
 
     if (cityName) {
         cityInputEl.value = "";
-        saveCity(cityName);
+        confirmCityName(cityName);
     } else {
         alert("Please enter a city name");
     }
+};
+
+var confirmCityName = function (cityName) {
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=05bd4265f18fe414d9b3357776b08c4d";
+
+    fetch(apiUrl).then(function (response) {
+        if (response.ok) {
+            saveCity(cityName)
+        } else {
+            alert("Error: City not found");
+        }
+    })
+        .catch(function (error) {
+            alert("Unable to connect to GitHub");
+        });
 };
 
 // Local Storage functions
